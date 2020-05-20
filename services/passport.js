@@ -27,12 +27,10 @@ passport.use(
             const existingUser = await User.findOne({ googleId: profile.id });
 
             if(existingUser){
-                console.log('User already exists in DB');
                 done(null, existingUser);
             }
             else{
                 const user = await new User({ googleId: profile.id }).save();
-                console.log('new User saved successfully');
                 done(null, user);
             }
         }
