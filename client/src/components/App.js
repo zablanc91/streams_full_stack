@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import * as actions from '../actions';
+import StreamCreate from './StreamCreate';
 
-const StreamCreate = () => <h3>Create a new stream (coming soon)</h3>;
+//const StreamCreate = () => <h3>Create a new stream (coming soon)</h3>;
 const componentNotFound = () => <h3>404. Not Found</h3>;
 const StreamList = () => <h3>Stream List (coming soon)</h3>;
 
@@ -20,7 +21,12 @@ class App extends Component {
                 <BrowserRouter>
                     <Switch>
                         <Route exact path="/"  component={StreamList} />
-                        <Route exact path="/streams/new" component={StreamCreate} /> 
+                        {this.props.auth ? (
+                                <Route exact path="/streams/new" component={StreamCreate} /> 
+                            ) : (
+                                <Redirect to="/" />
+                            )
+                        } 
                         <Route path="*" component={componentNotFound} />
                     </Switch>
                 </BrowserRouter>
@@ -30,5 +36,7 @@ class App extends Component {
     }  
 };
 
-//no mapStateToProps used in this component
-export default connect(null, actions)(App);
+const mapStateToProps = ({auth}) => {
+    return {auth};
+}
+export default connect(mapStateToProps, actions)(App);
