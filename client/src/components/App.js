@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import * as actions from '../actions';
+import { fetchUser } from '../actions';
 import StreamCreate from './StreamCreate';
 
 //const StreamCreate = () => <h3>Create a new stream (coming soon)</h3>;
@@ -39,4 +39,4 @@ class App extends Component {
 const mapStateToProps = ({auth}) => {
     return {auth};
 }
-export default connect(mapStateToProps, actions)(App);
+export default connect(mapStateToProps, {fetchUser})(App);

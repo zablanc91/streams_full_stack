@@ -2,14 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const app = express();
+const bodyParser = require('body-parser');
 
 //import models
-//need to define User collection before using passport.js
+//need to define DB collections before using passport.js
 require('./models/User');
+require('./models/Stream');
 
 //make use of our services helper modules
 require('./services/passport');
 require('./services/cookies')(app);
+app.use(bodyParser.json());
 
 //connect to mongoDB cluster
 mongoose.connect(keys.mongoURI, {
@@ -26,6 +29,7 @@ app.get('/', (req, res) => {
 
 //let routes have access to app
 require('./routes/authRoutes')(app);
+require('./routes/streamRoutes')(app);
 
 //handle routes that do not exist
 app.use((req, res, next) => {
