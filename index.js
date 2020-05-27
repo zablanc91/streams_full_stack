@@ -23,10 +23,6 @@ mongoose.connect(keys.mongoURI, {
     .catch(err => console.log('Error: ', err.stack));
 
 
-app.get('/', (req, res) => {
-    console.log('Server is online.');
-});
-
 //let routes have access to app
 require('./routes/authRoutes')(app);
 require('./routes/streamRoutes')(app);

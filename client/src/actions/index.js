@@ -22,3 +22,12 @@ export const createStream = (formValues) => async (dispatch, getState) => {
         payload: streamData
     });
 };
+
+//pulls streams from our API, result is an array of objects representing our stream and its info
+export const getStreams = () => async (dispatch) => {
+    let res = await axios.get('/api/streams');
+    dispatch({
+        type: 'GET_STREAMS',
+        payload: res.data
+    });
+}

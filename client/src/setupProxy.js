@@ -10,6 +10,9 @@ module.exports = function(app) {
 
     app.use(
         '/api',
-        createProxyMiddleware({target: 'http://localhost:2000'})
+        createProxyMiddleware({
+            target: 'http://localhost:2000',
+            secure: false
+        })
     ); 
 };

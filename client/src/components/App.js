@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { fetchUser } from '../actions';
 import StreamCreate from './StreamCreate';
+import StreamList from './StreamList'
 
-//const StreamCreate = () => <h3>Create a new stream (coming soon)</h3>;
 const componentNotFound = () => <h3>404. Not Found</h3>;
-const StreamList = () => <h3>Stream List (coming soon)</h3>;
+
 
 class App extends Component {
     componentDidMount(){
