@@ -20,7 +20,8 @@ module.exports = (app) => {
         const {name, description, userID} = req.body;
         const log = await new Stream({name, description, userID}).save();
         console.log('done saving to DB');
-        res.redirect('/');
+        res.send(log);
+        //res.redirect('/');
     });
 
     app.get('/api/redirect', requireLogin, (req, res) => {

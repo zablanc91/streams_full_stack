@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getStreams } from '../actions'
+import { getStreams } from '../actions';
+import StreamCard from './StreamCard';
 
 class StreamList extends Component {
     componentDidMount(){
@@ -8,20 +9,22 @@ class StreamList extends Component {
     }
 
     //reminder that default stream state is empty object, so okay on first render when doing API call
-    renderStreams(){     
-        return this.props.streams.map(stream => {
-            return(
-                <div key={stream._id}>
-                    <h3>{stream.name}</h3>
-                    <p>{stream.description}</p>
-                </div>
-            );
-        })
+    renderStreams(){    
+        return(
+            <div className="row">
+                {this.props.streams.map(stream => {
+                    return(
+                        <StreamCard id={stream._id} name={stream.name} description={stream.description} />
+                    );
+                })}
+
+            </div>
+        ) ;
     }
 
     render(){
         return (
-            <div>
+            <div className="container" >
                 {this.renderStreams()}
             </div>
         );

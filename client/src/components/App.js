@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { fetchUser } from '../actions';
 import StreamCreate from './StreamCreate';
-import StreamList from './StreamList'
+import StreamList from './StreamList';
+import StreamShow from './StreamShow';
 
 const componentNotFound = () => <h3>404. Not Found</h3>;
 
@@ -26,7 +27,8 @@ class App extends Component {
                             ) : (
                                 <Redirect to="/" />
                             )
-                        } 
+                        }
+                        <Route exact path="/streams/:id" component={StreamShow} /> 
                         <Route path="*" component={componentNotFound} />
                     </Switch>
                 </BrowserRouter>

@@ -3,7 +3,7 @@
 export default (state = {}, action) => {
     switch(action.type){
         case 'CREATE_STREAM': 
-            return {...state, [action.payload.name]: action.payload};
+            return {...state, [action.payload._id]: action.payload};
         case 'GET_STREAMS':
             //payload is an array representing streams, need to make compatible with state which is an object
             const streamsObj = {};

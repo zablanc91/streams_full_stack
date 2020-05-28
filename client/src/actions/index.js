@@ -16,10 +16,10 @@ export const createStream = (formValues) => async (dispatch, getState) => {
     let userID = getState().auth._id;
     let streamData = {name, description, userID};
 
-    await axios.post('/api/streams/create', streamData);
+    let res = await axios.post('/api/streams/create', streamData);
     dispatch({
         type: 'CREATE_STREAM',
-        payload: streamData
+        payload: res.data
     });
 };
 
